@@ -166,12 +166,18 @@ unzip v4.3.0.zip
 cd students-4.3.0
 ```
 
-Step 2: Put the project on your GitHub
+Step 2: Create a new repository on GitHub
 
-The zip file doesn't include any Git history, so we'll turn the folder into a Git repository and push it to your own GitHub account.
+On GitHub, create a new **empty** repository named `students`. Do not add a README, `.gitignore` or license, as the project already has its own files.
 
-1. On GitHub, create a new **empty** repository named `students` (don't add a README, `.gitignore` or license)
-2. Back in your terminal, run (replace `<your-github-username>`):
+Learn more about [creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).
+
+Step 3: Push the project to your repository
+
+The zip file does not include any Git history, so you need to turn the folder into a Git repository first. Then add your new GitHub repository as the `origin` remote and push the project to it.
+
+Replace `<your-github-username>` with your GitHub username.
+
 ```bash
 git init -b main
 git add .
@@ -180,14 +186,16 @@ git remote add origin https://github.com/<your-github-username>/students.git
 git push -u origin main
 ```
 
-Step 3: Create a new feature branch
+Refresh your repository page on GitHub. You should see the project files there.
+
+Step 4: Create a new feature branch
 ```bash
 git switch -c feature-yourname-test
 ```
 
 > **Note:** `git switch -c` is the modern alternative to `git checkout -b`. Both commands create and switch to a new branch. You may see `git checkout` used in older tutorials and projects — it still works, but `git switch` is preferred in current Git versions (2.23+).
 
-Step 4: Make changes and commit
+Step 5: Make changes and commit
 
 Add your name and details to `data/students.json`, then:
 ```bash
@@ -195,12 +203,12 @@ git add .
 git commit -m "Add feature changes"
 ```
 
-Step 5: Push the branch to GitHub
+Step 6: Push the branch to GitHub
 ```bash
 git push origin feature-yourname-test
 ```
 
-Step 6: Create a pull request on GitHub and merge it into `main`.
+Step 7: Create a pull request on GitHub and merge it into `main`.
 
 ---
 
