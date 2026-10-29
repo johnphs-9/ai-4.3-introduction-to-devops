@@ -153,31 +153,54 @@ This approach works well with automated CI/CD pipelines.
 
 ## Simulating a GitHub Flow
 
-Step 1: Clone the repository
+We'll use the `students` project for this exercise.
+
+For Windows users, use the WSL terminal only. For macOS users, use your preferred terminal.
+
+Step 1: Download the project
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+cd ~
+cd playground
+curl -L -O https://github.com/aie-devops/students/archive/refs/tags/v4.3.0.zip
+unzip v4.3.0.zip
+cd students-4.3.0
 ```
 
-Step 2: Create a new feature branch
+Step 2: Put the project on your GitHub
+
+The zip file doesn't include any Git history, so we'll turn the folder into a Git repository and push it to your own GitHub account.
+
+1. On GitHub, create a new **empty** repository named `students` (don't add a README, `.gitignore` or license)
+2. Back in your terminal, run (replace `<your-github-username>`):
+```bash
+git init -b main
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/<your-github-username>/students.git
+git push -u origin main
+```
+
+Step 3: Create a new feature branch
 ```bash
 git switch -c feature-yourname-test
 ```
 
 > **Note:** `git switch -c` is the modern alternative to `git checkout -b`. Both commands create and switch to a new branch. You may see `git checkout` used in older tutorials and projects — it still works, but `git switch` is preferred in current Git versions (2.23+).
 
-Step 3: Make changes and commit
+Step 4: Make changes and commit
+
+Add your name and details to `data/students.json`, then:
 ```bash
 git add .
 git commit -m "Add feature changes"
 ```
 
-Step 4: Push the branch to GitHub
+Step 5: Push the branch to GitHub
 ```bash
 git push origin feature-yourname-test
 ```
 
-Step 5: Create a pull request on GitHub and merge it into `main`.
+Step 6: Create a pull request on GitHub and merge it into `main`.
 
 ---
 
@@ -206,30 +229,32 @@ Step 5: Create a pull request on GitHub and merge it into `main`.
 
 ### 🏃 Activity 3 – Hands-On Git Practice (15 min)
 
-Using a repository of your choice (your own GitHub repo or one provided by the instructor), run the following commands and note what each one outputs:
+Continue in the `students-4.3.0` folder from the GitHub Flow simulation. Run the following commands and note what each one outputs:
 
 1. View your commit history:
 ```bash
 git log --oneline
 ```
 
-2. Check for any changes not yet staged:
+2. Make a small change to `README.md` (for example, add a line at the end), then check for changes not yet staged:
 ```bash
 git diff
 ```
 
-3. Fetch updates from the remote without merging:
+3. Fetch updates from your GitHub repository without merging:
 ```bash
 git fetch origin
 ```
 
-4. Stash your current changes, then view the stash list:
+4. Stash your `README.md` change, then view the stash list:
 ```bash
 git stash
 git stash list
 ```
 
-5. Restore your stashed changes:
+> Run `git diff` again - it shows nothing, because the change is now in the stash.
+
+5. Restore your stashed change:
 ```bash
 git stash pop
 ```
