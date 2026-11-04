@@ -100,7 +100,59 @@ Mac setup is simpler — no extra integration step needed.
 - **Disk space:** At least 6 GB free.
 - **Admin password:** You'll be asked for your Mac login password during install to grant system permissions.
 
-If all of that looks fine, continue to Step 1.
+If all of that looks fine, continue to Step 1. If you prefer installing apps from the terminal, you can use the optional Homebrew step below instead of Steps 1 and 2.
+
+### Optional Step: Install Docker Desktop with Homebrew
+
+[Homebrew](https://brew.sh) is a package manager for Mac: it installs apps and tools with a single terminal command. This step is optional - if you'd rather not use Homebrew, skip to Step 1.
+
+> Docker Desktop through Homebrew needs **macOS 14 (Sonoma) or newer**. On an older macOS, use Steps 1 and 2 instead.
+
+**1. Check whether you already have Homebrew**
+
+Open **Terminal** and run:
+
+```bash
+brew --version
+```
+
+If you see something like `Homebrew 4.x.x`, Homebrew is installed - go to part 3 below. If you see `command not found: brew`, install it first (part 2).
+
+**2. Install Homebrew**
+
+Run this command in Terminal (it is the official command from [brew.sh](https://brew.sh)):
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+- The script explains what it will do and pauses before it starts. Press **Enter** to continue
+- Enter your Mac login password when asked (nothing appears on screen while you type - that's normal)
+- It can take several minutes
+
+When it finishes, the installer prints a **Next steps** section with commands that add `brew` to your terminal. **Copy and run those commands exactly as shown.** On Apple Silicon Macs they usually look like this:
+
+```bash
+echo >> ~/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+Close and reopen Terminal, then check that it works:
+
+```bash
+brew --version
+```
+
+**3. Install Docker Desktop**
+
+```bash
+brew install --cask docker-desktop
+```
+
+Homebrew downloads the right version for your Mac's chip and puts **Docker** in your **Applications** folder. Enter your Mac login password if you're asked for it.
+
+Then open **Docker** from your Applications folder (or Spotlight search), approve any system permission prompts, and **skip to Step 3**.
 
 ### Step 1: Download Docker Desktop for Mac
 
